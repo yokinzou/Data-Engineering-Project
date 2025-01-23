@@ -1,0 +1,18 @@
+# database:
+#   name: "dev_database"
+#   schema: "dev_schema"
+#   table_prefix: "dev_"
+
+gcp:
+  project_id: "de-project-prd"
+  bucket_name: "de-project-yokin-bucket-prd"
+  # dataset: "dev_dataset"
+  location: "asia-east1"
+
+dbt:
+  target: "dev"
+  profiles_dir: "/opt/dbt"
+  
+alerts:
+  email_on_failure: false
+  email_on_retry: false
