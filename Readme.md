@@ -1,4 +1,6 @@
 ## PROJECT STRUCTURE
+
+```
 project_root/
 ├── .git/
 ├── .github/                         # GitHub Actions 配置
@@ -80,6 +82,7 @@ project_root/
     ├── architecture.md
     ├── development.md
     └── deployment.md
+```
 
 ## FREQIENTLY USED COMMANDS
 
