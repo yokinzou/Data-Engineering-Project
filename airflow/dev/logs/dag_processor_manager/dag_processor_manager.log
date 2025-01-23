@@ -525,3 +525,25 @@ File Path                                                               PID    R
 /opt/airflow/dags/dev/GCP Project/data_ingestion_gcs_dag.py                                      1           0  0.10s           2025-01-23T15:28:10                      12
 /opt/airflow/dags/dev/Premise Project/ingest_data_to_local_postgres.py                           1           0  0.10s           2025-01-23T15:28:10                      12
 ================================================================================
+[2025-01-23T15:28:44.157+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+----------------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/dev/GCP Project/simple_dag.py                                                  1           0  0.09s           2025-01-23T15:28:40                      12
+/opt/airflow/dags/dev/Premise Project/ingest_data_to_local_postgres.py                           1           0  0.08s           2025-01-23T15:28:41                      12
+/opt/airflow/dags/dev/GCP Project/data_ingestion_gcs_dag.py                                      1           0  0.08s           2025-01-23T15:28:41                      12
+================================================================================
+[2025-01-23T15:29:14.644+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+----------------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/dev/GCP Project/data_ingestion_gcs_dag.py                                      1           0  0.12s           2025-01-23T15:29:11                      12
+/opt/airflow/dags/dev/Premise Project/ingest_data_to_local_postgres.py                           1           0  0.12s           2025-01-23T15:29:11                      12
+/opt/airflow/dags/dev/GCP Project/simple_dag.py                                                  1           0  0.08s           2025-01-23T15:29:10                      12
+================================================================================
+[2025-01-23T15:29:21.726+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags/dev
+[2025-01-23T15:29:21.736+0000] {manager.py:824} INFO - There are 3 files in /opt/airflow/dags/dev

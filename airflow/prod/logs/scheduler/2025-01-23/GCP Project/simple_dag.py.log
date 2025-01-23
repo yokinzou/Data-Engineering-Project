@@ -328,3 +328,17 @@
 [2025-01-23T15:28:18.264+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:28:18.264+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-01-23T15:28:18.276+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:28:18.276+0000] {dag.py:4180} INFO - Setting next_dagrun for simple_dag to 2025-01-22 00:00:00+00:00, run_after=2025-01-23 00:00:00+00:00
 [2025-01-23T15:28:18.283+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/prod/GCP Project/simple_dag.py took 0.057 seconds
+[2025-01-23T15:28:48.653+0000] {processor.py:186} INFO - Started process (PID=519) to work on /opt/airflow/dags/prod/GCP Project/simple_dag.py
+[2025-01-23T15:28:48.654+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/prod/GCP Project/simple_dag.py for tasks to queue
+[2025-01-23T15:28:48.658+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:28:48.657+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/prod/GCP Project/simple_dag.py
+[2025-01-23T15:28:48.671+0000] {processor.py:925} INFO - DAG(s) 'simple_dag' retrieved from /opt/airflow/dags/prod/GCP Project/simple_dag.py
+[2025-01-23T15:28:48.688+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:28:48.688+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-23T15:28:48.700+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:28:48.700+0000] {dag.py:4180} INFO - Setting next_dagrun for simple_dag to 2025-01-22 00:00:00+00:00, run_after=2025-01-23 00:00:00+00:00
+[2025-01-23T15:28:48.707+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/prod/GCP Project/simple_dag.py took 0.062 seconds
+[2025-01-23T15:29:19.149+0000] {processor.py:186} INFO - Started process (PID=528) to work on /opt/airflow/dags/prod/GCP Project/simple_dag.py
+[2025-01-23T15:29:19.151+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/prod/GCP Project/simple_dag.py for tasks to queue
+[2025-01-23T15:29:19.155+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:29:19.154+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/prod/GCP Project/simple_dag.py
+[2025-01-23T15:29:19.168+0000] {processor.py:925} INFO - DAG(s) 'simple_dag' retrieved from /opt/airflow/dags/prod/GCP Project/simple_dag.py
+[2025-01-23T15:29:19.186+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:29:19.185+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-23T15:29:19.197+0000] {logging_mixin.py:190} INFO - [2025-01-23T15:29:19.197+0000] {dag.py:4180} INFO - Setting next_dagrun for simple_dag to 2025-01-22 00:00:00+00:00, run_after=2025-01-23 00:00:00+00:00
+[2025-01-23T15:29:19.204+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/prod/GCP Project/simple_dag.py took 0.063 seconds
