@@ -15,6 +15,12 @@ https://github.com/DataTalksClub/nyc-tlc-data
 * PROD BIGQUERY
 <img src="/Images/image-3.png" width="700" height="380">
 
+## AIRFLOW DEV
+<img src="/Images/image-4.png" width="700" height="380">
+
+## AIRFLOW PROD
+<img src="/Images/image-5.png" width="700" height="380">
+
 ## PROJECT STRUCTURE
 ```
 project_root/
