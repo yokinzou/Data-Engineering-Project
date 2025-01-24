@@ -6,7 +6,7 @@ x-airflow-common:
     dockerfile: Dockerfile
   environment:
     &airflow-common-env
-    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags/dev
+    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
     AIRFLOW__CORE__ENVIRONMENT: development
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
@@ -20,13 +20,14 @@ x-airflow-common:
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
     DBT_PROFILES_DIR: /opt/dbt
     DBT_TARGET: dev
+    GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/google/credentials/google_credentials.json
   volumes:
-    - ../dags/dev:/opt/airflow/dags/dev
+    - ../dags/dev:/opt/airflow/dags
+    - ../../configs/airflow:/opt/airflow/configs
     - ./logs:/opt/airflow/logs
     - ../common/plugins:/opt/airflow/plugins
-    - ../common/config:/opt/airflow/config
     - ../../dbt:/opt/dbt
-    - ~/.google/credentials/dev_credentials.json:/.google/credentials/google_credentials.json:ro
+    - ~/.google/credentials/google_credentials.json:/opt/airflow/google/credentials/google_credentials.json:ro
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on

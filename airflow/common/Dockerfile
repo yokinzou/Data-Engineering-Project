@@ -15,11 +15,14 @@ RUN echo "deb http://security.debian.org/debian-security bullseye-security main 
 
 # 创建必要的目录
 RUN mkdir -p /opt/dbt && \
-    mkdir -p /opt/airflow/dags/dev && \
-    mkdir -p /opt/airflow/dags/prod && \
+    mkdir -p /opt/airflow/dags && \
+    mkdir -p /opt/airflow/dags && \
     mkdir -p /opt/airflow/scripts && \
-    chown -R airflow:root /opt/dbt /opt/airflow/dags /opt/airflow/scripts && \
-    chmod -R g+rw /opt/dbt /opt/airflow/dags /opt/airflow/scripts
+    mkdir -p /opt/airflow/configs && \
+    mkdir -p /opt/airflow/google/credentials && \
+
+    chown -R airflow:root /opt/dbt /opt/airflow/dags /opt/airflow/scripts /opt/airflow/google/credentials && \
+    chmod -R g+rw /opt/dbt /opt/airflow/dags /opt/airflow/scripts /opt/airflow/google/credentials
 
 # 安装 Google Cloud SDK
 ARG CLOUD_SDK_VERSION=458.0.0
