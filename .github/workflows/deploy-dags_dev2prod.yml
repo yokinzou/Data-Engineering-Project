@@ -15,7 +15,7 @@ jobs:  # 定义作业
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTION_TOKEN }}  # 使用个人访问令牌替代 GITHUB_TOKEN
           
       - name: Configure Git
         run: |
@@ -58,6 +58,7 @@ jobs:  # 定义作业
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.ACTION_TOKEN }}  # 添加 token 配置
           title: '同步 DAG 文件从 Dev 到 Prod'
           body: |
             自动同步 DAG 文件从开发环境到生产环境
