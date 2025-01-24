@@ -15,6 +15,7 @@ jobs:  # 定义作业
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.ACTION_TOKEN }}  # 使用 ACTION_TOKEN
           
       - name: Configure Git
         run: |
@@ -26,12 +27,12 @@ jobs:  # 定义作业
           # 获取 staging 分支最新的 DAG 文件
           git checkout staging
           
-          # 切换到main分支（生产环境分支）
-          git checkout main
-          
-          # 创建新的同步分支（使用时间戳确保唯一性）
+          # 设置分支名称并将其导出为环境变量
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           BRANCH_NAME="sync-dags-to-prod-${TIMESTAMP}"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          
+          git checkout main
           git checkout -b $BRANCH_NAME
           
           # 从 staging 分支复制 DAG 文件
@@ -56,7 +57,10 @@ jobs:  # 定义作业
           
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}  # 使用 ACTION_TOKEN
         with:
+          token: ${{ secrets.ACTION_TOKEN }}  # 使用 ACTION_TOKEN
           title: '同步 DAG 文件从 Dev 到 Prod'
           body: |
             自动同步 DAG 文件从开发环境到生产环境

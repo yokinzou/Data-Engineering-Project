@@ -1,0 +1,14 @@
+# Airflow logs
+airflow/**/logs/
+**/logs/
+
+# 更具体的日志路径
+airflow/dev/logs/
+airflow/prod/logs/
+
+airflow/*/logs/**
+**/__pycache__/
+
+*.pyc
+*.pyo
+*.pyd
