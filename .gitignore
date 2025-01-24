@@ -5,3 +5,5 @@ airflow/**/logs/
 # 更具体的日志路径
 airflow/dev/logs/
 airflow/prod/logs/
+
+airflow/*/logs/**
