@@ -1,0 +1,76 @@
+name: Sync DAGs to Production  # 同步 DAG 到生产环境
+
+on:  # 触发条件
+  push:  # 当发生推送时
+    branches:  # 指定分支
+      - staging  # 仅在 staging 分支
+    paths:  # 指定文件路径
+      - 'airflow/dags/dev/**'  # 监控 dev 目录下的文件变化
+
+jobs:  # 定义作业
+  sync-to-prod:  # 同步到生产环境
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Configure Git
+        run: |
+          git config --global user.name 'Yokin Zou'
+          git config --global user.email 'yokinzou@outlook.com'
+          
+      - name: Sync DAGs to Production
+        run: |
+          # 获取 staging 分支最新的 DAG 文件
+          git checkout staging
+          
+          # 切换到main分支（生产环境分支）
+          git checkout main
+          
+          # 创建新的同步分支（使用时间戳确保唯一性）
+          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          BRANCH_NAME="sync-dags-to-prod-${TIMESTAMP}"
+          git checkout -b $BRANCH_NAME
+          
+          # 从 staging 分支复制 DAG 文件
+          git checkout staging -- airflow/dags/dev/
+          
+          # 遍历开发环境中的所有 DAG 文件
+          for file in airflow/dags/dev/*.py; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              
+              # 替换配置文件路径：从开发环境改为生产环境
+              sed 's|/opt/airflow/configs/dev.yml|/opt/airflow/configs/prod.yml|g' "$file" > "airflow/dags/prod/$filename"
+            fi
+          done
+          
+          # 提交更改到 Git
+          git add airflow/dags/prod/
+          git commit -m "同步 DAG 文件从 dev 到 prod（自动替换环境配置）"
+          
+          # 推送新分支到远程仓库
+          git push origin $BRANCH_NAME
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: '同步 DAG 文件从 Dev 到 Prod'
+          body: |
+            自动同步 DAG 文件从开发环境到生产环境
+            
+            已自动替换的配置项：
+            - 配置文件路径：dev.yml → prod.yml
+        
+            请仔细检查以下内容：
+            1. DAG 逻辑是否正确
+            2. 环境配置是否正确替换
+            3. 是否需要其他配置调整
+            4. 开发环境的测试是否全部通过
+          branch: ${{ env.BRANCH_NAME }}  # 使用环境变量引用分支名
+          base: main
+          labels: |
+            automated-pr
+            dag-sync
