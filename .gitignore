@@ -8,3 +8,7 @@ airflow/prod/logs/
 
 airflow/*/logs/**
 **/__pycache__/
+
+*.pyc
+*.pyo
+*.pyd
