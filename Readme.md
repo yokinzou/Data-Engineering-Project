@@ -3,17 +3,17 @@ https://github.com/DataTalksClub/nyc-tlc-data
 
 ## GCP DEV ENV
 * DEV BUCKET
-<img src="/Images/image-1.png" width="500" height="300">
+<img src="/Images/image-1.png" width="700" height="300">
 
 * DEV BIGQUERY
-<img src="/Images/image.png" width="500" height="300">
+<img src="/Images/image.png" width="700" height="300">
 
 ## GCP PROD ENV
 * PROD BUCKET
-<img src="/Images/image-2.png" width="500" height="300">
+<img src="/Images/image-2.png" width="700" height="300">
 
 * PROD BIGQUERY
-<img src="/Images/image-3.png" width="500" height="300">
+<img src="/Images/image-3.png" width="700" height="300">
 
 ## PROJECT STRUCTURE
 ```
