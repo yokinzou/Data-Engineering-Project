@@ -7,3 +7,4 @@ airflow/dev/logs/
 airflow/prod/logs/
 
 airflow/*/logs/**
+**/__pycache__/
