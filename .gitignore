@@ -1,5 +1,4 @@
-
-# Airflow logs
-airflow/**/logs/
-*.log
-
+airflow/dags/dev/logs/
+airflow/dags/prod/logs/
+airflow/dags/*/logs/
+*/logs/
