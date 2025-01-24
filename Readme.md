@@ -1,16 +1,19 @@
-
 ## DATA SOURCE
 https://github.com/DataTalksClub/nyc-tlc-data
 
 ## GCP DEV ENV
-![alt text](/Images/image.png)
+* DEV BUCKET
+<img src="/Images/image-1.png" width="500" height="300">
 
-![alt text](/Images/image-1.png)
+* DEV BIGQUERY
+<img src="/Images/image.png" width="500" height="300">
 
 ## GCP PROD ENV
-![alt text](/Images/image-2.png)
+* PROD BUCKET
+<img src="/Images/image-2.png" width="500" height="300">
 
-![alt text](/Images/image-3.png)
+* PROD BIGQUERY
+<img src="/Images/image-3.png" width="500" height="300">
 
 ## PROJECT STRUCTURE
 ```

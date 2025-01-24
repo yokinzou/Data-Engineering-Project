@@ -1853,3 +1853,66 @@
 [2025-01-24T09:01:38.510+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:01:38.510+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-01-24T09:01:38.530+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:01:38.530+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
 [2025-01-24T09:01:38.542+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.083 seconds
+[2025-01-24T09:02:08.918+0000] {processor.py:186} INFO - Started process (PID=1191) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:02:08.919+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:02:08.925+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:02:08.925+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:02:09.097+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:02:09.204+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:02:09.204+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:02:09.258+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:02:09.257+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:02:09.283+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.375 seconds
+[2025-01-24T09:02:39.650+0000] {processor.py:186} INFO - Started process (PID=1200) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:02:39.651+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:02:39.656+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:02:39.655+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:02:39.694+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:02:39.735+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:02:39.734+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:02:39.779+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:02:39.779+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:02:39.792+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.152 seconds
+[2025-01-24T09:03:10.281+0000] {processor.py:186} INFO - Started process (PID=1209) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:03:10.284+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:03:10.291+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:03:10.291+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:03:10.324+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:03:10.372+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:03:10.371+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:03:10.403+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:03:10.403+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:03:10.419+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.145 seconds
+[2025-01-24T09:03:40.866+0000] {processor.py:186} INFO - Started process (PID=1218) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:03:40.867+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:03:40.869+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:03:40.868+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:03:40.893+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:03:40.911+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:03:40.911+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:03:40.926+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:03:40.926+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:03:40.936+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.075 seconds
+[2025-01-24T09:04:11.432+0000] {processor.py:186} INFO - Started process (PID=1227) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:04:11.433+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:04:11.434+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:04:11.434+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:04:11.453+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:04:11.472+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:04:11.472+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:04:11.493+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:04:11.493+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:04:11.539+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.112 seconds
+[2025-01-24T09:04:41.995+0000] {processor.py:186} INFO - Started process (PID=1236) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:04:41.997+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:04:41.999+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:04:41.998+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:04:42.016+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:04:42.041+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:04:42.041+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:04:42.059+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:04:42.059+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:04:42.074+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.083 seconds
+[2025-01-24T09:05:12.515+0000] {processor.py:186} INFO - Started process (PID=1245) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:05:12.516+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:05:12.519+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:05:12.519+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:05:12.538+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:05:12.557+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:05:12.556+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:05:12.575+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:05:12.575+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:05:12.586+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.076 seconds
+[2025-01-24T09:05:43.044+0000] {processor.py:186} INFO - Started process (PID=1254) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:05:43.045+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:05:43.047+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:05:43.047+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:05:43.071+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:05:43.094+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:05:43.094+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:05:43.112+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:05:43.112+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:05:43.122+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.084 seconds
+[2025-01-24T09:06:13.520+0000] {processor.py:186} INFO - Started process (PID=1263) to work on /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:06:13.521+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py for tasks to queue
+[2025-01-24T09:06:13.523+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:06:13.523+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:06:13.544+0000] {processor.py:925} INFO - DAG(s) 'data_ingestion_premise_postgres_dag' retrieved from /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py
+[2025-01-24T09:06:13.562+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:06:13.561+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-01-24T09:06:13.575+0000] {logging_mixin.py:190} INFO - [2025-01-24T09:06:13.575+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_premise_postgres_dag to 2025-01-23 00:00:00+00:00, run_after=2025-01-24 00:00:00+00:00
+[2025-01-24T09:06:13.584+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Premise Project/ingest_data_to_local_postgres.py took 0.069 seconds
