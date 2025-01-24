@@ -1,3 +1,0 @@
-[2025-01-24T08:21:01.277+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
-[2025-01-24T08:21:01.292+0000] {taskinstance.py:2603} INFO - Dependencies not met for <TaskInstance: data_ingestion_gcs_dag.download_dataset_task_yellow_tripdata_2021-04.csv manual__2025-01-24T08:01:50.082831+00:00 [success]>, dependency 'Task Instance State' FAILED: Task is in the 'success' state.
-[2025-01-24T08:21:01.309+0000] {local_task_job_runner.py:166} INFO - Task is not able to be run
