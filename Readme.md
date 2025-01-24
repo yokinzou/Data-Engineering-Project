@@ -84,6 +84,16 @@ project_root/
     └── deployment.md
 ```
 
+## BIG QUERY DEV ENV
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+## BIG QUERY PROD ENV
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
 ## FREQIENTLY USED COMMANDS
 
 1. Build airflow image
