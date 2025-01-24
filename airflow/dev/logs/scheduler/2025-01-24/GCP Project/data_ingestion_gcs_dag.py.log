@@ -5229,3 +5229,173 @@ airflow.exceptions.DuplicateTaskIdFound: Task id 'download_dataset_task' has alr
 [2025-01-24T10:08:15.296+0000] {logging_mixin.py:190} INFO - [2025-01-24T10:08:15.296+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-01-24T10:08:15.306+0000] {logging_mixin.py:190} INFO - [2025-01-24T10:08:15.306+0000] {dag.py:4180} INFO - Setting next_dagrun for data_ingestion_gcs_dag to 2025-01-24 00:00:00+00:00, run_after=2025-01-25 00:00:00+00:00
 [2025-01-24T10:08:15.312+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.052 seconds
+[2025-01-24T13:42:11.448+0000] {processor.py:186} INFO - Started process (PID=268) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:42:11.448+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:42:11.451+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:42:11.450+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:42:11.455+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:42:11.454+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:42:11.456+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:42:11.470+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.028 seconds
+[2025-01-24T13:42:41.755+0000] {processor.py:186} INFO - Started process (PID=277) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:42:41.755+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:42:41.757+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:42:41.757+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:42:41.762+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:42:41.761+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:42:41.763+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:42:41.778+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.030 seconds
+[2025-01-24T13:43:12.057+0000] {processor.py:186} INFO - Started process (PID=286) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:43:12.057+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:43:12.060+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:43:12.060+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:43:12.065+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:43:12.064+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:43:12.065+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:43:12.080+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.030 seconds
+[2025-01-24T13:43:42.401+0000] {processor.py:186} INFO - Started process (PID=295) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:43:42.402+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:43:42.403+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:43:42.403+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:43:42.407+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:43:42.407+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:43:42.408+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:43:42.421+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.026 seconds
+[2025-01-24T13:44:12.807+0000] {processor.py:186} INFO - Started process (PID=304) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:44:12.807+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:44:12.809+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:44:12.809+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:44:12.814+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:44:12.813+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:44:12.814+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:44:12.828+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.029 seconds
+[2025-01-24T13:44:43.161+0000] {processor.py:186} INFO - Started process (PID=313) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:44:43.162+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:44:43.164+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:44:43.164+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:44:43.167+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:44:43.166+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:44:43.168+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:44:43.181+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.025 seconds
+[2025-01-24T13:45:13.530+0000] {processor.py:186} INFO - Started process (PID=322) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:45:13.530+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:45:13.532+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:45:13.532+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:45:13.537+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:45:13.536+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:45:13.537+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:45:13.552+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.028 seconds
+[2025-01-24T13:45:43.883+0000] {processor.py:186} INFO - Started process (PID=331) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:45:43.884+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:45:43.885+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:45:43.885+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:45:43.890+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:45:43.889+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:45:43.890+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:45:43.901+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.024 seconds
+[2025-01-24T13:46:14.241+0000] {processor.py:186} INFO - Started process (PID=339) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:46:14.241+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:46:14.243+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:46:14.243+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:46:14.247+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:46:14.246+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:46:14.247+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:46:14.261+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.026 seconds
+[2025-01-24T13:46:44.549+0000] {processor.py:186} INFO - Started process (PID=347) to work on /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:46:44.550+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py for tasks to queue
+[2025-01-24T13:46:44.551+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:46:44.551+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:46:44.555+0000] {logging_mixin.py:190} INFO - [2025-01-24T13:46:44.554+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py", line 46
+    dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+                                                                                                                                                                                ^
+SyntaxError: invalid syntax
+[2025-01-24T13:46:44.555+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py
+[2025-01-24T13:46:44.567+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/GCP Project/data_ingestion_gcs_dag.py took 0.023 seconds
