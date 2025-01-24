@@ -1,5 +1,18 @@
-## PROJECT STRUCTURE
 
+## DATA SOURCE
+https://github.com/DataTalksClub/nyc-tlc-data
+
+## GCP DEV ENV
+![alt text](/Images/image.png)
+
+![alt text](/Images/image-1.png)
+
+## GCP PROD ENV
+![alt text](/Images/image-2.png)
+
+![alt text](/Images/image-3.png)
+
+## PROJECT STRUCTURE
 ```
 project_root/
 ├── .git/
@@ -83,16 +96,6 @@ project_root/
     ├── development.md
     └── deployment.md
 ```
-
-## BIG QUERY DEV ENV
-![alt text](image.png)
-
-![alt text](image-1.png)
-
-## BIG QUERY PROD ENV
-![alt text](image-2.png)
-
-![alt text](image-3.png)
 
 ## FREQIENTLY USED COMMANDS
 
