@@ -1,7 +1,4 @@
-# Airflow logs
-airflow/**/logs/
-**/logs/
-
-# 更具体的日志路径
-airflow/dev/logs/
-airflow/prod/logs/
+airflow/dags/dev/logs/
+airflow/dags/prod/logs/
+airflow/dags/*/logs/
+*/logs/

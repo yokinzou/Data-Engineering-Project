@@ -1,0 +1,23 @@
+[2025-01-24T08:20:07.546+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-24T08:20:07.553+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_ingestion_gcs_dag.format_to_parquet_task_yellow_tripdata_2021-04.csv manual__2025-01-24T07:55:07.576027+00:00 [queued]>
+[2025-01-24T08:20:07.557+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_ingestion_gcs_dag.format_to_parquet_task_yellow_tripdata_2021-04.csv manual__2025-01-24T07:55:07.576027+00:00 [queued]>
+[2025-01-24T08:20:07.557+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 3
+[2025-01-24T08:20:07.561+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): format_to_parquet_task_yellow_tripdata_2021-04.csv> on 2025-01-24 07:55:07.576027+00:00
+[2025-01-24T08:20:07.565+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=726) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-24T08:20:07.566+0000] {standard_task_runner.py:72} INFO - Started process 727 to run task
+[2025-01-24T08:20:07.566+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion_gcs_dag', 'format_to_parquet_task_yellow_tripdata_2021-04.csv', 'manual__2025-01-24T07:55:07.576027+00:00', '--job-id', '118', '--raw', '--subdir', 'DAGS_FOLDER/GCP Project/data_ingestion_gcs_dag.py', '--cfg-path', '/tmp/tmpayf1leem']
+[2025-01-24T08:20:07.568+0000] {standard_task_runner.py:105} INFO - Job 118: Subtask format_to_parquet_task_yellow_tripdata_2021-04.csv
+[2025-01-24T08:20:07.588+0000] {task_command.py:467} INFO - Running <TaskInstance: data_ingestion_gcs_dag.format_to_parquet_task_yellow_tripdata_2021-04.csv manual__2025-01-24T07:55:07.576027+00:00 [running]> on host 7526bafc575d
+[2025-01-24T08:20:07.619+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_ingestion_gcs_dag' AIRFLOW_CTX_TASK_ID='format_to_parquet_task_yellow_tripdata_2021-04.csv' AIRFLOW_CTX_EXECUTION_DATE='2025-01-24T07:55:07.576027+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-24T07:55:07.576027+00:00'
+[2025-01-24T08:20:07.620+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-24T08:20:07.627+0000] {data_ingestion_gcs_dag.py:61} INFO - 开始读取CSV文件: /opt/***/yellow_tripdata_2021-04.csv
+[2025-01-24T08:20:07.896+0000] {data_ingestion_gcs_dag.py:70} INFO - 开始写入Parquet文件: /opt/***/yellow_tripdata_2021-04.parquet
+[2025-01-24T08:20:08.546+0000] {data_ingestion_gcs_dag.py:72} INFO - 成功将CSV转换为Parquet: /opt/***/yellow_tripdata_2021-04.parquet
+[2025-01-24T08:20:08.553+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-01-24T08:20:08.585+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-24T08:20:08.586+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=data_ingestion_gcs_dag, task_id=format_to_parquet_task_yellow_tripdata_2021-04.csv, run_id=manual__2025-01-24T07:55:07.576027+00:00, execution_date=20250124T075507, start_date=20250124T082007, end_date=20250124T082008
+[2025-01-24T08:20:08.622+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-24T08:20:08.645+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-01-24T08:20:08.646+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
