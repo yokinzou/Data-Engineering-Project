@@ -28,10 +28,10 @@ jobs:  # Define jobs
           git fetch origin
           git checkout -f staging
           
-          # 首先检查dev目录中是否有.py文件
-          if ! ls airflow/dags/dev/*.py 1> /dev/null 2>&1; then
-            echo "No .py files found in dev directory"
-            exit 0  # 正常退出，而不是报错
+          # 修改检查逻辑，包含子目录
+          if ! find airflow/dags/dev -name "*.py" -type f | grep -q .; then
+            echo "No .py files found in dev directory or its subdirectories"
+            exit 0
           fi
           
           # 设置分支名称并导出为环境变量
@@ -39,17 +39,18 @@ jobs:  # Define jobs
           BRANCH_NAME="sync-dags-to-prod-${TIMESTAMP}"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
           
-          # 首先在staging分支上进行同步
           # 确保目标目录存在
           mkdir -p airflow/dags/prod/
           
-          # 复制并处理dev目录下的DAG文件到prod目录
-          for file in airflow/dags/dev/*.py; do
-            if [ -f "$file" ]; then
-              filename=$(basename "$file")
-              # 替换配置文件路径并保存到生产目录
-              sed 's|/opt/airflow/configs/dev.yml|/opt/airflow/configs/prod.yml|g' "$file" > "airflow/dags/prod/$filename"
-            fi
+          # 使用find命令递归查找所有.py文件并保持目录结构
+          find airflow/dags/dev -name "*.py" -type f | while read file; do
+            # 获取相对路径
+            rel_path=${file#airflow/dags/dev/}
+            # 创建目标目录
+            mkdir -p "airflow/dags/prod/$(dirname "$rel_path")"
+            # 替换配置文件路径并保存到对应的生产目录
+            sed 's|/opt/airflow/configs/dev.yml|/opt/airflow/configs/prod.yml|g' "$file" > "airflow/dags/prod/$rel_path"
+            echo "Processed: $file -> airflow/dags/prod/$rel_path"
           done
           
           # 在staging分支上提交更改
