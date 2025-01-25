@@ -79,24 +79,22 @@ jobs:  # Define jobs
           
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}  # Use ACTION_TOKEN
         with:
-          token: ${{ secrets.ACTION_TOKEN }}  # Use ACTION_TOKEN
-          title: 'Sync DAG Files from Dev to Prod'
+          token: ${{ secrets.ACTION_TOKEN }}  # 改用 ACTION_TOKEN 替代 GITHUB_TOKEN
+          branch: "sync-dags-${{ github.run_number }}"  # 添加明确的分支名
+          title: "Sync DAG Files from Dev to Prod"
           body: |
             Automatic sync of DAG files from development to production environment
             
             Automatically replaced configurations:
             - Config file path: dev.yml → prod.yml
-        
+            
             Please carefully review the following:
             1. DAG logic correctness
             2. Environment configuration replacement
             3. Need for additional configuration adjustments
             4. All development environment tests passed
-          branch: ${{ env.BRANCH_NAME }}  # Reference branch name from environment variable
-          base: main
-          labels: |
-            automated-pr
-            dag-sync
+          base: "main"
+          labels: "automated-pr,dag-sync"
+          commit-message: "chore: sync DAGs from dev to prod"
+          delete-branch: true  # PR合并后删除分支
