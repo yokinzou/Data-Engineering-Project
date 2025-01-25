@@ -28,6 +28,12 @@ jobs:  # Define jobs
           git fetch origin
           git checkout -f staging
           
+          # 首先检查dev目录中是否有.py文件
+          if ! ls airflow/dags/dev/*.py 1> /dev/null 2>&1; then
+            echo "No .py files found in dev directory"
+            exit 0  # 正常退出，而不是报错
+          fi
+          
           # 设置分支名称并导出为环境变量
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           BRANCH_NAME="sync-dags-to-prod-${TIMESTAMP}"
@@ -68,7 +74,7 @@ jobs:  # Define jobs
             git push origin $BRANCH_NAME
           else
             echo "No DAG file changes detected for sync"
-            exit 1
+            exit 0  # 改为返回0，表示正常完成
           fi
           
       - name: Create Pull Request
