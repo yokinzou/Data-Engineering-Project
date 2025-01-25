@@ -26,7 +26,7 @@ import pyarrow.parquet as pq      # 用于处理Parquet格式文件
 
 # load setup
 def load_config():
-    config_path = '/opt/airflow/configs/prod.yml'
+    config_path = '/opt/airflow/configs/dev.yml'
     with open(config_path, 'r') as file:
         return yaml.safe_load(file)
 config = load_config()
@@ -42,8 +42,9 @@ location = config['gcp']['location']
 BIGQUERY_DATASET ='trips_data_all'  # BigQuery数据集名称
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")    # Airflow的本地路径
 
-# 定义数据集相关的变量
-dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+
+dataset_file_list = ["green_tripdata_2021-01.csv","green_tripdata_2021-02.csv", "green_tripdata_2021-04.csv","green_tripdata_2021-05.csv","green_tripdata_2021-06.csv"]            # 数据集文件名
+
 
 
 
@@ -118,7 +119,7 @@ with DAG(
 ) as dag:
     
     for dataset_file_name in dataset_file_list:
-        dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/{dataset_file_name}.gz"
+        dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/{dataset_file_name}.gz"
 
         # 修改task_id，确保每个文件有唯一的task_id
         download_dataset_task = BashOperator(

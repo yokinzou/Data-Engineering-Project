@@ -26,7 +26,7 @@ import pyarrow.parquet as pq      # 用于处理Parquet格式文件
 
 # load setup
 def load_config():
-    config_path = '/opt/airflow/configs/dev.yml'
+    config_path = '/opt/airflow/configs/prod.yml'
     with open(config_path, 'r') as file:
         return yaml.safe_load(file)
 config = load_config()
@@ -43,7 +43,7 @@ BIGQUERY_DATASET ='trips_data_all'  # BigQuery数据集名称
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")    # Airflow的本地路径
 
 
-dataset_file_list = [ "green_tripdata_2021-04.csv","green_tripdata_2021-05.csv"]            # 数据集文件名
+dataset_file_list = ["green_tripdata_2021-01.csv","green_tripdata_2021-02.csv", "green_tripdata_2021-04.csv","green_tripdata_2021-05.csv","green_tripdata_2021-06.csv"]            # 数据集文件名
 
 
 

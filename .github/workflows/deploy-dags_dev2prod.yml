@@ -1,21 +1,21 @@
-name: Sync DAGs to Production  # 同步 DAG 到生产环境
+name: Sync DAGs to Production
 
-on:  # 触发条件
-  push:  # 当发生推送时
-    branches:  # 指定分支
-      - staging  # 仅在 staging 分支
-    paths:  # 指定文件路径
-      - 'airflow/dags/dev/**'  # 监控 dev 目录下的文件变化
+on:  # Trigger conditions
+  push:  # When a push occurs
+    branches:  # Specify branches
+      - staging  # Only on staging branch
+    paths:  # Specify file paths
+      - 'airflow/dags/dev/**'  # Monitor changes in dev directory
 
-jobs:  # 定义作业
-  sync-to-prod:  # 同步到生产环境
+jobs:  # Define jobs
+  sync-to-prod:  # Sync to production environment
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.ACTION_TOKEN }}  # 使用 ACTION_TOKEN
+          token: ${{ secrets.ACTION_TOKEN }}  # Use ACTION_TOKEN
           
       - name: Configure Git
         run: |
@@ -24,57 +24,78 @@ jobs:  # 定义作业
           
       - name: Sync DAGs to Production
         run: |
-          # 获取 staging 分支最新的 DAG 文件
-          git checkout staging
+          # 确保我们在staging分支上
+          git fetch origin
+          git checkout -f staging
           
-          # 设置分支名称并将其导出为环境变量
+          # 修改检查逻辑，包含子目录
+          if ! find airflow/dags/dev -name "*.py" -type f | grep -q .; then
+            echo "No .py files found in dev directory or its subdirectories"
+            exit 0
+          fi
+          
+          # 设置分支名称并导出为环境变量
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           BRANCH_NAME="sync-dags-to-prod-${TIMESTAMP}"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
           
-          git checkout main
-          git checkout -b $BRANCH_NAME
+          # 确保目标目录存在
+          mkdir -p airflow/dags/prod/
           
-          # 从 staging 分支复制 DAG 文件
-          git checkout staging -- airflow/dags/dev/
-          
-          # 遍历开发环境中的所有 DAG 文件
-          for file in airflow/dags/dev/*.py; do
-            if [ -f "$file" ]; then
-              filename=$(basename "$file")
-              
-              # 替换配置文件路径：从开发环境改为生产环境
-              sed 's|/opt/airflow/configs/dev.yml|/opt/airflow/configs/prod.yml|g' "$file" > "airflow/dags/prod/$filename"
-            fi
+          # 使用find命令递归查找所有.py文件并保持目录结构
+          find airflow/dags/dev -name "*.py" -type f | while read file; do
+            # 获取相对路径
+            rel_path=${file#airflow/dags/dev/}
+            # 创建目标目录
+            mkdir -p "airflow/dags/prod/$(dirname "$rel_path")"
+            # 替换配置文件路径并保存到对应的生产目录
+            sed 's|/opt/airflow/configs/dev.yml|/opt/airflow/configs/prod.yml|g' "$file" > "airflow/dags/prod/$rel_path"
+            echo "Processed: $file -> airflow/dags/prod/$rel_path"
           done
           
-          # 提交更改到 Git
+          # 在staging分支上提交更改
           git add airflow/dags/prod/
-          git commit -m "同步 DAG 文件从 dev 到 prod（自动替换环境配置）"
+          git commit -m "Sync DAG files from dev to prod in staging (auto-replace environment config)"
+          git push origin staging
           
-          # 推送新分支到远程仓库
-          git push origin $BRANCH_NAME
+          # 创建新分支从main并同步更改
+          git checkout -f main
+          git checkout -b $BRANCH_NAME
+          
+          # 从staging分支复制整个dags目录
+          git checkout staging -- airflow/dags/
+          
+          # 检查是否有文件被修改
+          if git status --porcelain | grep -q '^'; then
+            # 提交更改到Git
+            git add airflow/dags/
+            git commit -m "Sync DAG files from staging to main (including both dev and prod)"
+            
+            # 推送新分支到远程仓库
+            git push origin $BRANCH_NAME
+          else
+            echo "No DAG file changes detected for sync"
+            exit 0  # 改为返回0，表示正常完成
+          fi
           
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}  # 使用 ACTION_TOKEN
         with:
-          token: ${{ secrets.ACTION_TOKEN }}  # 使用 ACTION_TOKEN
-          title: '同步 DAG 文件从 Dev 到 Prod'
+          token: ${{ secrets.ACTION_TOKEN }}  # 改用 ACTION_TOKEN 替代 GITHUB_TOKEN
+          branch: "sync-dags-${{ github.run_number }}"  # 添加明确的分支名
+          title: "Sync DAG Files from Dev to Prod"
           body: |
-            自动同步 DAG 文件从开发环境到生产环境
+            Automatic sync of DAG files from development to production environment
             
-            已自动替换的配置项：
-            - 配置文件路径：dev.yml → prod.yml
-        
-            请仔细检查以下内容：
-            1. DAG 逻辑是否正确
-            2. 环境配置是否正确替换
-            3. 是否需要其他配置调整
-            4. 开发环境的测试是否全部通过
-          branch: ${{ env.BRANCH_NAME }}  # 使用环境变量引用分支名
-          base: main
-          labels: |
-            automated-pr
-            dag-sync
+            Automatically replaced configurations:
+            - Config file path: dev.yml → prod.yml
+            
+            Please carefully review the following:
+            1. DAG logic correctness
+            2. Environment configuration replacement
+            3. Need for additional configuration adjustments
+            4. All development environment tests passed
+          base: "main"
+          labels: "automated-pr,dag-sync"
+          commit-message: "chore: sync DAGs from dev to prod"
+          delete-branch: true  # PR合并后删除分支
