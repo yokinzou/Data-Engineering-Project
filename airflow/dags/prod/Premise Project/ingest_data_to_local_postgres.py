@@ -1,4 +1,3 @@
-#yaml
 import yaml
 
 # Import required Python standard libraries
@@ -20,7 +19,6 @@ import time
 from sqlalchemy import create_engine
 import os 
 
-
 #load config
 def load_config():
     config_path = '/opt/airflow/configs/prod.yml'
@@ -29,7 +27,6 @@ def load_config():
 config = load_config()
 
 postgres_host = config['local_postgres']['host']
-
 
 # Define dataset-related variables
 dataset_file = "yellow_tripdata_2021-01.csv"             
