@@ -1,3 +1,5 @@
+import yaml
+
 # Import required Python standard libraries
 import os                  # For handling operating system related functionality
 import logging            # For logging
@@ -16,6 +18,15 @@ import pandas as pd
 import time
 from sqlalchemy import create_engine
 import os 
+
+#load config
+def load_config():
+    config_path = '/opt/airflow/configs/prod.yml'
+    with open(config_path, 'r') as file:
+        return yaml.safe_load(file)
+config = load_config()
+
+postgres_host = config['local_postgres']['host']
 
 # Define dataset-related variables
 dataset_file = "yellow_tripdata_2021-01.csv"             
@@ -129,7 +140,7 @@ with DAG(
         op_kwargs={
             "user": "airflow",
             "password": "airflow",
-            "host": "dev-postgres-1",
+            "host": postgres_host,
             "port": "5432",
             "db": "airflow",
             "table_name": "yellow_taxi_trips",
