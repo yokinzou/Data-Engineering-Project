@@ -43,7 +43,7 @@ BIGQUERY_DATASET ='trips_data_all'  # BigQuery数据集名称
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")    # Airflow的本地路径
 
 # 定义数据集相关的变量
-dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv",,"yellow_tripdata_2021-06.csv"]            # 数据集文件名
+dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv","yellow_tripdata_2021-06.csv"]            # 数据集文件名
 
 
 
