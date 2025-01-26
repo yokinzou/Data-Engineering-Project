@@ -120,6 +120,9 @@ docker compose run airflow-webserver airflow users create \
     --email yokinzou@outlook.com \
     --password admin
 
+3.connect to airflow postgres in docker 
+docker exec -it <airflow-container-id> bash
+psql -h postgres -U airflow -d ny_taxi
 
 ## DATA SOURCE DISCRIPTION
 [Referenced Link](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
