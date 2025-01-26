@@ -109,7 +109,7 @@ default_args = {
 
 # 使用上下文管理器创建DAG
 with DAG(
-    dag_id="data_ingestion_gcs_dag",    
+    dag_id="data_ingestion_gcs_dag_yellow_trip",    
     schedule_interval="@daily",          
     default_args=default_args,           
     catchup=False,                       
