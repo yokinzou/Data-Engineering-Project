@@ -129,7 +129,7 @@ with DAG(
         op_kwargs={
             "user": "airflow",
             "password": "airflow",
-            "host": "workfloworchestration-postgres-1",
+            "host": "dev-postgres-1",
             "port": "5432",
             "db": "airflow",
             "table_name": "yellow_taxi_trips",

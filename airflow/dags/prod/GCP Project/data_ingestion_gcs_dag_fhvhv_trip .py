@@ -5,6 +5,7 @@ import os                  # 用于处理操作系统相关的功能
 import logging            # 用于日志记录
 import gzip              # 用于处理gzip压缩文件
 import shutil            # 用于文件操作
+import pyarrow as pa
 
 # 导入Airflow相关的库
 from airflow import DAG                    # 导入DAG类，用于创建工作流
@@ -42,33 +43,54 @@ location = config['gcp']['location']
 BIGQUERY_DATASET ='trips_data_all'  # BigQuery数据集名称
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")    # Airflow的本地路径
 
-# 定义数据集相关的变量
-dataset_file_list = ["yellow_tripdata_2021-01.csv", "yellow_tripdata_2021-02.csv","yellow_tripdata_2021-03.csv","yellow_tripdata_2021-04.csv","yellow_tripdata_2021-05.csv","yellow_tripdata_2021-06.csv"]            # 数据集文件名
+
+dataset_file_list = ["fhvhv_tripdata_2021-01.csv","fhvhv_tripdata_2021-06.csv"]            # 数据集文件名
+
 
 
 
 def format_to_parquet(src_file):
-    """将CSV文件转换为Parquet格式
-    
-    参数:
-        src_file: 源CSV文件路径
-    """
+    """将CSV文件转换为Parquet格式，使用分批处理来处理大文件"""
     try:
         if not src_file.endswith('.csv'):
             logging.error("目前只接受CSV格式的源文件")
             return
         
         logging.info(f"开始读取CSV文件: {src_file}")
-        # 添加CSV读取选项，处理可能的编码和类型问题
-        table = pv.read_csv(src_file, parse_options=pv.ParseOptions(
-            delimiter=',',
-            quote_char='"',
-            double_quote=True
-        ))
-        
         output_file = src_file.replace('.csv', '.parquet')
-        logging.info(f"开始写入Parquet文件: {output_file}")
-        pq.write_table(table, output_file)
+        
+        # 使用更宽容的转换选项
+        convert_options = pv.ConvertOptions(
+            strings_can_be_null=True,
+            null_values=['', 'NULL', 'null', 'NA', 'na'],
+            timestamp_parsers=['%Y-%m-%d %H:%M:%S'],
+            auto_dict_encode=True,
+            auto_dict_max_cardinality=50,
+        )
+        
+        # 使用分批读取和写入
+        table = pv.read_csv(
+            src_file,
+            parse_options=pv.ParseOptions(
+                delimiter=',',
+                quote_char='"',
+                double_quote=True
+            ),
+            convert_options=convert_options,
+            read_options=pv.ReadOptions(
+                block_size=10 * 1024 * 1024,  # 10MB 的块大小
+                use_threads=True
+            )
+        )
+        
+        # 直接写入parquet文件
+        pq.write_table(
+            table,
+            output_file,
+            compression='snappy',
+            row_group_size=100000  # 控制每个行组的大小
+        )
+        
         logging.info(f"成功将CSV转换为Parquet: {output_file}")
         
     except Exception as e:
@@ -109,7 +131,7 @@ default_args = {
 
 # 使用上下文管理器创建DAG
 with DAG(
-    dag_id="data_ingestion_gcs_dag",    
+    dag_id="data_ingestion_gcs_dag_fhvhv_trip",    
     schedule_interval="@daily",          
     default_args=default_args,           
     catchup=False,                       
@@ -118,7 +140,7 @@ with DAG(
 ) as dag:
     
     for dataset_file_name in dataset_file_list:
-        dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/{dataset_file_name}.gz"
+        dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/fhvhv/{dataset_file_name}.gz"
 
         # 修改task_id，确保每个文件有唯一的task_id
         download_dataset_task = BashOperator(
