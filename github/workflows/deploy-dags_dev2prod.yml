@@ -1,0 +1,39 @@
+- name: Sync DAGs to Production
+  run: |
+    # 添加调试信息
+    echo "当前目录内容："
+    ls -la
+    
+    echo "dev目录内容："
+    ls -la airflow/dags/dev/
+    
+    # 确保我们在staging分支上
+    git fetch origin
+    git checkout -f staging
+    
+    # 添加更多调试信息
+    echo "切换到staging分支后的目录内容："
+    ls -la airflow/dags/dev/
+    
+    # 首先检查dev目录中是否有.py文件
+    if ! ls airflow/dags/dev/*.py 1> /dev/null 2>&1; then
+      echo "No .py files found in dev directory"
+      exit 0
+    fi
+    
+    # 创建prod目录（添加调试信息）
+    echo "创建prod目录"
+    mkdir -p airflow/dags/prod/
+    
+    # 复制文件（添加调试信息）
+    echo "开始复制文件..."
+    for file in airflow/dags/dev/*.py; do
+      if [ -f "$file" ]; then
+        filename=$(basename "$file")
+        echo "处理文件: $filename"
+        sed 's|/opt/airflow/configs/dev.yml|/opt/airflow/configs/prod.yml|g' "$file" > "airflow/dags/prod/$filename"
+      fi
+    done
+    
+    echo "prod目录内容："
+    ls -la airflow/dags/prod/
