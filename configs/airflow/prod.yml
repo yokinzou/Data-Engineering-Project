@@ -12,6 +12,9 @@ gcp:
 dbt:
   target: "dev"
   profiles_dir: "/opt/dbt"
+
+local_postgres:
+  host:"prod-postgres-1"
   
 alerts:
   email_on_failure: false
