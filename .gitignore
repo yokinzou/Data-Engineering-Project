@@ -12,3 +12,5 @@ airflow/*/logs/**
 *.pyc
 *.pyo
 *.pyd
+
+den_venv/
