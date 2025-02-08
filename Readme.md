@@ -210,3 +210,14 @@ Via
 数据的完整性和可比性
 服务模式的解释
 商业洞察的准确性 
+
+
+## DBT USASE
+
+1.pip install dbt-core dbt-bigquery 
+2.cd dbt
+3.dbt init project_name
+4.dbt run
+5.dbt test
+6.dbt docs generate
+7.dbt docs serve
