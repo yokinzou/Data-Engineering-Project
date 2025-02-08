@@ -39,13 +39,8 @@ location = config['gcp']['location']
 
 
 # 设置本地路径和BigQuery数据集名称
-BIGQUERY_DATASET ='trips_data_all'  # BigQuery数据集名称
+BIGQUERY_DATASET ='raw_dataset'  # BigQuery数据集名称
 path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")    # Airflow的本地路径
-
-
-
-
-
 
 
 def format_to_parquet(src_file):
