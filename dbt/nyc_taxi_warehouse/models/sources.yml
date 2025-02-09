@@ -4,3 +4,15 @@ sources:
     schema: raw_dataset
     tables:
       - name: green_tripdata_2021-01
+      - name: green_tripdata_2021-02
+      - name: green_tripdata_2021-03
+      - name: green_tripdata_2021-04
+      - name: green_tripdata_2021-05
+      - name: green_tripdata_2021-06
+      - name: yellow_tripdata_2021-01
+      - name: yellow_tripdata_2021-02
+      - name: yellow_tripdata_2021-03
+      - name: yellow_tripdata_2021-04
+      - name: yellow_tripdata_2021-05
+      - name: yellow_tripdata_2021-06
+      
