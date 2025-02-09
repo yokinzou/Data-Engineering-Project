@@ -1,9 +1,0 @@
-sources:
-  - name: staging
-    schema: trips_data_all
-    tables:
-      - name: green_tripdata_external
-        loaded_at_field: pickup_datetime  # 用于确定新数据的时间字段
-        freshness:
-          warn_after: {count: 24, period: hour}
-          error_after: {count: 48, period: hour}

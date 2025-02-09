@@ -1,0 +1,6 @@
+sources:
+  - name: raw
+    database: de-project-444809
+    schema: raw_dataset
+    tables:
+      - name: green_tripdata_2021-01
