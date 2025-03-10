@@ -13,4 +13,5 @@ airflow/*/logs/**
 *.pyo
 *.pyd
 
-den_venv/
+# 临时移动虚拟环境文件夹
+mv den-venv den-venv-backup
