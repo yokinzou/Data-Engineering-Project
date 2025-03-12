@@ -27,34 +27,34 @@ https://github.com/DataTalksClub/nyc-tlc-data
 ```
 project_root/
 ├── .git/
-├── .github/                         # GitHub Actions 配置
+├── .github/                         # GitHub Actions configuration
 │   └── workflows/
-│       ├── test.yml                # 测试工作流
-│       └── deploy.yml              # 部署工作流
+│       ├── test.yml                # Test workflow
+│       └── deploy.yml              # Deployment workflow
 ├── .gitignore
 ├── README.md
 ├── airflow/
-│   ├── dags/                       # 统一的 DAG 目录
+│   ├── dags/                       # Unified DAG directory
 │   │   ├── __init__.py
-│   │   ├── dev/           # 开发中的 DAG (dev 分支)
+│   │   ├── dev/           # Development DAGs (dev branch)
 │   │   │   ├── __init__.py
 │   │   │   └── new_etl_dag.py
-│   │   ├── prod/                 # 生产 DAG (main 分支)
+│   │   ├── prod/                 # Production DAGs (main branch)
 │   │   │   ├── __init__.py
 │   │   │   ├── daily_etl_dag.py
 │   │   │   └── weekly_report_dag.py
-│   │   └── common/                 # 两个环境共享的 DAG
+│   │   └── common/                 # DAGs shared between environments
 │   │       ├── __init__.py
 │   │       └── dbt_dag.py
-│   ├── dev/                        # 开发环境配置
+│   ├── dev/                        # Development environment configuration
 │   │   ├── docker-compose.yaml
 │   │   ├── .env.example
 │   │   └── logs/
-│   ├── prod/                       # 生产环境配置
+│   ├── prod/                       # Production environment configuration
 │   │   ├── docker-compose.yaml
 │   │   ├── .env.example
 │   │   └── logs/
-│   └── common/                     # 共享资源
+│   └── common/                     # Shared resources
 │       ├── Dockerfile
 │       ├── requirements.txt
 │       ├── plugins/
@@ -62,8 +62,8 @@ project_root/
 │       ├── scripts/
 │       │   ├── __init__.py
 │       │   ├── set_env.py
-│       │   ├── dag_validation.py   # DAG 验证脚本
-│       │   └── deploy_to_prod.py   # 部署脚本
+│       │   ├── dag_validation.py   # DAG validation script
+│       │   └── deploy_to_prod.py   # Deployment script
 │       └── config/
 │           ├── env_config.yaml
 │           ├── dev_config.py
@@ -81,7 +81,7 @@ project_root/
 │   ├── analysis/
 │   ├── snapshots/
 │   └── seeds/
-├── tests/                          # 测试目录
+├── tests/                          # Test directory
 │   ├── __init__.py
 │   ├── conftest.py
 │   ├── dags/
@@ -89,26 +89,26 @@ project_root/
 │   │   └── test_dags.py
 │   └── dbt/
 │       └── test_models.py
-├── deployment/                     # 部署配置
-│   ├── ansible/                    # Ansible 部署脚本
+├── deployment/                     # Deployment configuration
+│   ├── ansible/                    # Ansible deployment scripts
 │   │   ├── inventory/
 │   │   │   ├── dev
 │   │   │   └── prod
 │   │   └── playbooks/
 │   │       ├── deploy_dev.yml
 │   │       └── deploy_prod.yml
-│   └── k8s/                       # Kubernetes 配置
+│   └── k8s/                       # Kubernetes configuration
 │       ├── dev/
 │       │   └── values.yaml
 │       └── prod/
 │           └── values.yaml
-└── docs/                          # 项目文档
+└── docs/                          # Project documentation
     ├── architecture.md
     ├── development.md
     └── deployment.md
 ```
 
-## FREQIENTLY USED COMMANDS
+## FREQUENTLY USED COMMANDS
 
 1. Build airflow image
 docker build -t airflow-custom:latest . --no-cache
@@ -120,104 +120,104 @@ docker compose run airflow-webserver airflow users create \
     --email yokinzou@outlook.com \
     --password admin
 
-3.connect to airflow postgres in docker 
+3. Connect to airflow postgres in docker 
 docker exec -it <airflow-container-id> bash
 psql -h postgres -U airflow -d ny_taxi
 
-## DATA SOURCE DISCRIPTION
+## DATA SOURCE DESCRIPTION
 [Referenced Link](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
-### 1. Yellow Taxi（黄色出租车）
-- 运营区域：
-主要在曼哈顿核心商业区（Manhattan Central Business District, CBD）运营
-可以在全市任何地方接送客人
-是唯一被允许在机场排队等候接客的出租车
-- 特点：
-最传统的出租车服务
-可以路边扬招（Street-hail）
-使用计价表计费
-数量有严格限制（medallion系统）
-- 价格：
-起步价较高
-使用统一的计价标准
+### 1. Yellow Taxi
+- Operating Area:
+  Primarily operates in Manhattan Central Business District (CBD)
+  Can pick up and drop off passengers anywhere in the city
+  The only taxi service allowed to queue at airports for passenger pickup
+- Characteristics:
+  The most traditional taxi service
+  Can be hailed from the street (Street-hail)
+  Uses metered fares
+  Strictly limited in number (medallion system)
+- Pricing:
+  Higher base fare
+  Uses standardized pricing
 
-### 2. Green Taxi（绿色出租车）
-- 运营限制：
-不能在曼哈顿中心区域（下城96街以下）接客
-不能在机场接客
-可以在其他区域自由接客
-- 服务区域：
-主要服务于曼哈顿以外的区域（布鲁克林、皇后区、布朗克斯等）
-可以通过预约在任何地方接送客人
-- 引入原因：
-2013年引入，为了改善外围区域的出租车服务
-解决黄色出租车集中在曼哈顿的问题
+### 2. Green Taxi
+- Operating Restrictions:
+  Cannot pick up passengers in central Manhattan (below 96th Street)
+  Cannot pick up at airports
+  Can freely pick up passengers in other areas
+- Service Area:
+  Primarily serves areas outside Manhattan (Brooklyn, Queens, Bronx, etc.)
+  Can pick up and drop off passengers anywhere through pre-arrangement
+- Introduction Reason:
+  Introduced in 2013 to improve taxi service in outer boroughs
+  Addresses the concentration of yellow taxis in Manhattan
 
-### 3. FHV（For-Hire Vehicles）
-- 运营模式：
-只能通过预约接客
-不能路边扬招
-通常需要提前电话或APP预约
-- 服务类型：
-包括传统的黑车服务
-豪华轿车服务
-长期租车服务
-- 价格特点：
-价格通常在行程开始前确定
-可能提供包车或包时服务
+### 3. FHV (For-Hire Vehicles)
+- Operating Model:
+  Can only pick up pre-arranged passengers
+  Cannot be hailed from the street
+  Typically requires advance booking by phone or app
+- Service Types:
+  Includes traditional black car services
+  Luxury limousine services
+  Long-term car rental services
+- Pricing Features:
+  Price is typically determined before the trip begins
+  May offer car or time-based package services
 
-### 4. FHVHV（High-Volume For-Hire Vehicles）
-- 代表公司：
-Uber
-Lyft
-Via
-- 特点：
-完全依赖APP预约
-动态定价系统
-高频次运营
-灵活的供需匹配
-- 运营方式：
-司机可以自由选择工作时间
-使用算法进行司机和乘客匹配
-实时追踪和评价系统
+### 4. FHVHV (High-Volume For-Hire Vehicles)
+- Representative Companies:
+  Uber
+  Lyft
+  Via
+- Characteristics:
+  Completely dependent on app-based booking
+  Dynamic pricing system
+  High-frequency operations
+  Flexible supply and demand matching
+- Operating Method:
+  Drivers can freely choose working hours
+  Uses algorithms to match drivers and passengers
+  Real-time tracking and rating system
 
-### 5. 主要区别对比：
-| 特征 | Yellow Taxi | Green Taxi | FHV | FHVHV |
-|------|-------------|------------|-----|--------|
-| 路边扬招 | ✅ | ✅（限定区域） | ❌ | ❌ |
-| 预约服务 | ✅ | ✅ | ✅ | ✅ |
-| 机场接客 | ✅ | ❌ | ✅ | ✅ |
-| 价格机制 | 固定计价表 | 固定计价表 | 预先约定 | 动态定价 |
-| 支付方式 | 现金/卡 | 现金/卡 | 多样化 | 仅APP支付 |
-| 运营区域限制 | 无 | 有 | 无 | 无 |
+### 5. Key Differences Comparison:
+| Feature | Yellow Taxi | Green Taxi | FHV | FHVHV |
+|---------|-------------|------------|-----|-------|
+| Street Hail | ✅ | ✅ (limited areas) | ❌ | ❌ |
+| Pre-arranged Service | ✅ | ✅ | ✅ | ✅ |
+| Airport Pickup | ✅ | ❌ | ✅ | ✅ |
+| Pricing Mechanism | Fixed meter | Fixed meter | Pre-arranged | Dynamic pricing |
+| Payment Method | Cash/Card | Cash/Card | Various | App only |
+| Operating Area Restrictions | None | Yes | None | None |
 
 ### DATA ANALYTICS INSIGHTS
 
 #### 1. Area Analysis
-不同类型出租车在各区域的市场份额
-服务覆盖率对比
+Market share of different taxi types by area
+Service coverage comparison
 
 #### 2. Time Pattern
-高峰期服务效率对比
-不同时段的市场占有率变化
-价格分析：
-相同路线不同服务的价格对比
-高峰期定价策略分析
-服务质量：
-等待时间对比
-完成率分析
-客户满意度对比
-这些差异在数据分析时需要特别注意，因为它们会影响到：
-数据的完整性和可比性
-服务模式的解释
-商业洞察的准确性 
+Peak hour service efficiency comparison
+Market share changes across different time periods
+Price analysis:
+Price comparison for the same route across different services
+Peak hour pricing strategy analysis
+Service quality:
+Wait time comparison
+Completion rate analysis
+Customer satisfaction comparison
+These differences need special attention during data analysis as they affect:
+Data integrity and comparability
+Interpretation of service patterns
+Accuracy of business insights
 
 
-## DBT USASE
+## DBT USAGE
 
-1.pip install dbt-core dbt-bigquery 
-2.cd dbt
-3.dbt init project_name
-4.dbt run
-5.dbt test
-6.dbt docs generate
-7.dbt docs serve
+1. pip install dbt-core dbt-bigquery 
+2. cd dbt
+3. dbt init project_name
+4. dbt run
+5. dbt test
+6. dbt docs generate
+7. dbt docs serve
