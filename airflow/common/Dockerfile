@@ -64,8 +64,8 @@ RUN pip install --no-cache-dir \
 COPY --chown=airflow:root requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制脚本和配置文件（如果有的话）
-COPY --chown=airflow:root scripts /opt/airflow/scripts/
+# # 复制脚本和配置文件（如果有的话）
+# COPY --chown=airflow:root scripts /opt/airflow/scripts/
 
 # 只有当目录不为空时才执行 chmod
 RUN [ "$(ls -A /opt/airflow/scripts/)" ] && chmod +x /opt/airflow/scripts/* || true

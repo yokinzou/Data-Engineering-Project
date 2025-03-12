@@ -21,7 +21,7 @@ import os
 
 #load config
 def load_config():
-    config_path = '/opt/airflow/configs/prod.yml'
+    config_path = '/opt/airflow/configs/dev.yml'
     with open(config_path, 'r') as file:
         return yaml.safe_load(file)
 config = load_config()

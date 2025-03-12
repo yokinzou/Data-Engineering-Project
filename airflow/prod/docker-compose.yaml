@@ -28,7 +28,7 @@ x-airflow-common:
     - ../common/plugins:/opt/airflow/plugins
     - ../common/scripts:/opt/airflow/scripts
     - ../../dbt:/opt/dbt
-    - ~/.google/credentials/de-project-prd-950b7c6bd1a9.json:/opt/airflow/google/credentials/google_credentials.json:ro
+    - ~/.google/credentials/de-project-prd.json:/opt/airflow/google/credentials/google_credentials.json:ro
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
