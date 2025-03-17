@@ -1,0 +1,184 @@
+erDiagram
+    %% 主事实表 - 存储所有类型出租车的基本行程信息
+    fact_all_trips {
+        string trip_id PK "唯一行程标识符，主键"
+        int64 service_type_key FK "服务类型维度键，区分黄/绿/FHV/FHVHV出租车"
+        int64 vendor_key FK "供应商维度键，标识提供服务的公司"
+        int64 pickup_datetime_key FK "上车时间维度键，关联到日期和时间维度"
+        int64 dropoff_datetime_key FK "下车时间维度键，关联到日期和时间维度"
+        int64 pickup_location_key FK "上车地点维度键，关联到位置维度"
+        int64 dropoff_location_key FK "下车地点维度键，关联到位置维度"
+        int64 payment_type_key FK "支付方式维度键，标识支付方式"
+        int64 passenger_count "乘客数量，记录行程中的乘客人数"
+        float64 trip_distance "行程距离(英里)，记录从上车到下车的距离"
+        string store_and_fwd_flag "存储转发标志，Y=行程数据先存储后发送，N=实时发送"
+        int64 trip_duration_seconds "行程时长(秒)，从上车到下车的时间差"
+        string source_table "数据来源表名，记录数据的原始表"
+        string data_month "数据月份，格式YYYY-MM，用于分区"
+        timestamp created_at "记录创建时间，ETL加载时间戳"
+    }
+    
+    %% 支付事实表 - 存储黄色和绿色出租车的支付详情
+    fact_trip_payments {
+        string trip_id PK,FK "唯一行程标识符，关联到主事实表"
+        int64 service_type_key FK "服务类型维度键，区分黄/绿出租车"
+        float64 fare_amount "基本车费，不含税费和小费的车费"
+        float64 extra "额外费用，如高峰时段附加费"
+        float64 mta_tax "MTA税，纽约大都会运输署税费"
+        float64 tip_amount "小费金额，乘客支付的小费"
+        float64 tolls_amount "通行费，如桥梁和隧道费"
+        float64 improvement_surcharge "改善费，用于车辆和服务改善"
+        float64 total_amount "总金额，所有费用的总和"
+        float64 congestion_surcharge "拥堵费，曼哈顿中心区域附加费"
+        string source_table "数据来源表名，记录数据的原始表"
+        timestamp created_at "记录创建时间，ETL加载时间戳"
+    }
+    
+    %% FHV特定事实表 - 存储传统租车服务特有信息
+    fact_fhv_trips {
+        string trip_id PK,FK "唯一行程标识符，关联到主事实表"
+        string dispatching_base_num "调度基地编号，FHV车辆的调度中心编号"
+        string affiliated_base_number "关联基地编号，FHV车辆所属的基地编号"
+        int64 sr_flag "共享乘车标志，1=共享行程，0=非共享行程"
+        string source_table "数据来源表名，记录数据的原始表"
+        timestamp created_at "记录创建时间，ETL加载时间戳"
+    }
+    
+    %% FHVHV特定事实表 - 存储网约车服务特有信息
+    fact_fhvhv_trips {
+        string trip_id PK,FK "唯一行程标识符，关联到主事实表"
+        string hvfhs_license_num "高容量租车服务许可证号，如Uber/Lyft的许可证"
+        string dispatching_base_num "调度基地编号，FHVHV车辆的调度中心编号"
+        string sr_flag "共享乘车标志，Y=共享行程，N=非共享行程"
+        string source_table "数据来源表名，记录数据的原始表"
+        timestamp created_at "记录创建时间，ETL加载时间戳"
+    }
+    
+    %% 服务类型维度 - 区分不同类型的出租车服务
+    dim_service_type {
+        int64 service_type_key PK "服务类型键，主键"
+        string service_type "服务类型名称，如yellow/green/fhv/fhvhv"
+        string service_category "服务类别，如medallion/boro/for-hire/high-volume"
+        string description "详细描述，服务类型的完整说明"
+    }
+    
+    %% 日期维度 - 存储日期相关属性
+    dim_date {
+        int64 date_key PK "日期键，格式YYYYMMDD，主键"
+        date full_date "完整日期，标准日期格式"
+        int64 day_of_week "星期几，1-7表示周一至周日"
+        string day_of_week_name "星期几名称，如Monday/Tuesday等"
+        int64 day_of_month "月中日，1-31"
+        int64 day_of_year "年中日，1-366"
+        int64 week_of_year "年中周，1-53"
+        int64 month_number "月份数字，1-12"
+        string month_name "月份名称，如January/February等"
+        int64 quarter "季度，1-4"
+        int64 year "年份，如2021"
+        boolean is_weekend "是否周末，TRUE=周末，FALSE=工作日"
+        boolean is_holiday "是否假日，TRUE=假日，FALSE=非假日"
+    }
+    
+    %% 时间维度 - 存储时间相关属性
+    dim_time {
+        int64 time_key PK "时间键，格式HHMISS，主键"
+        int64 hour_24 "24小时制小时，0-23"
+        int64 hour_12 "12小时制小时，1-12"
+        int64 minute "分钟，0-59"
+        int64 second "秒，0-59"
+        string am_pm "上午/下午，AM/PM"
+        string time_of_day "时段，如早晨/上午/下午/晚上"
+    }
+    
+    %% 位置维度 - 存储地理位置信息
+    dim_location {
+        int64 location_key PK "位置键，主键"
+        int64 location_id "位置ID，原始数据中的位置标识符"
+        string borough "行政区，如Manhattan/Brooklyn等"
+        string zone "区域，如Midtown/Downtown等"
+        string service_zone "服务区域，如Yellow Zone/Boro Zone等"
+        float64 latitude "纬度，位置的地理坐标"
+        float64 longitude "经度，位置的地理坐标"
+        date valid_from "有效开始日期，SCD Type 2字段"
+        date valid_to "有效结束日期，SCD Type 2字段"
+        boolean is_current "是否当前记录，SCD Type 2字段"
+    }
+    
+    %% 供应商维度 - 存储出租车供应商信息
+    dim_vendor {
+        int64 vendor_key PK "供应商键，主键"
+        int64 vendor_id "供应商ID，原始数据中的供应商标识符"
+        string vendor_name "供应商名称，如Creative Mobile Technologies/VeriFone等"
+        string vendor_description "供应商描述，详细信息"
+    }
+    
+    %% 支付类型维度 - 存储支付方式信息
+    dim_payment_type {
+        int64 payment_type_key PK "支付类型键，主键"
+        int64 payment_type_id "支付类型ID，原始数据中的支付类型标识符"
+        string payment_type_description "支付类型描述，如Credit card/Cash/No charge等"
+    }
+    
+    %% 费率代码维度 - 存储不同费率信息
+    dim_rate_code {
+        int64 rate_code_key PK "费率代码键，主键"
+        int64 rate_code_id "费率代码ID，原始数据中的费率代码标识符"
+        string rate_code_description "费率代码描述，如Standard rate/JFK/Newark等"
+    }
+    
+    %% 每日行程聚合表 - 按日期和服务类型汇总
+    agg_daily_trips {
+        int64 date_key PK,FK "日期键，关联到日期维度"
+        int64 service_type_key PK,FK "服务类型键，关联到服务类型维度"
+        int64 trip_count "行程总数，当日该服务类型的行程数量"
+        int64 total_passengers "乘客总数，当日该服务类型的总乘客数"
+        float64 total_distance "总行程距离，当日该服务类型的总里程"
+        float64 avg_trip_duration "平均行程时长，当日该服务类型的平均行程时间"
+        float64 avg_trip_distance "平均行程距离，当日该服务类型的平均行程距离"
+    }
+    
+    %% 位置热度聚合表 - 按区域和服务类型汇总
+    agg_location_popularity {
+        string year_month PK "年月，格式YYYY-MM"
+        int64 location_key PK,FK "位置键，关联到位置维度"
+        int64 service_type_key PK,FK "服务类型键，关联到服务类型维度"
+        int64 pickup_count "上车次数，该位置作为上车点的次数"
+        int64 dropoff_count "下车次数，该位置作为下车点的次数"
+        int64 total_count "总次数，上车和下车次数之和"
+    }
+    
+    %% 服务类型比较聚合表 - 按服务类型汇总
+    agg_service_comparison {
+        string year_month PK "年月，格式YYYY-MM"
+        int64 service_type_key PK,FK "服务类型键，关联到服务类型维度"
+        int64 trip_count "行程总数，该月该服务类型的行程数量"
+        float64 market_share "市场份额，该服务类型占总行程的百分比"
+        float64 avg_trip_distance "平均行程距离，该月该服务类型的平均行程距离"
+        float64 avg_trip_duration "平均行程时长，该月该服务类型的平均行程时间"
+    }
+    
+    %% 关系定义
+    fact_all_trips ||--o{ fact_trip_payments : "一个行程有一个支付记录"
+    fact_all_trips ||--o{ fact_fhv_trips : "FHV行程的额外信息"
+    fact_all_trips ||--o{ fact_fhvhv_trips : "FHVHV行程的额外信息"
+    
+    dim_service_type ||--o{ fact_all_trips : "一种服务类型有多个行程"
+    dim_service_type ||--o{ fact_trip_payments : "一种服务类型有多个支付"
+    dim_service_type ||--o{ agg_daily_trips : "按服务类型汇总"
+    dim_service_type ||--o{ agg_location_popularity : "按服务类型汇总"
+    dim_service_type ||--o{ agg_service_comparison : "按服务类型汇总"
+    
+    dim_date ||--o{ fact_all_trips : "上车日期"
+    dim_date ||--o{ fact_all_trips : "下车日期"
+    dim_date ||--o{ agg_daily_trips : "按日期汇总"
+    
+    dim_time ||--o{ fact_all_trips : "上车时间"
+    dim_time ||--o{ fact_all_trips : "下车时间"
+    
+    dim_location ||--o{ fact_all_trips : "上车地点"
+    dim_location ||--o{ fact_all_trips : "下车地点"
+    dim_location ||--o{ agg_location_popularity : "按地点汇总"
+    
+    dim_vendor ||--o{ fact_all_trips : "由供应商提供服务"
+    
+    dim_payment_type ||--o{ fact_all_trips : "使用的支付方式"

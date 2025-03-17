@@ -1,0 +1,25 @@
+flowchart TD
+    A[原始数据<br>各类出租车月度分区表] --> B[数据提取<br>从源系统读取原始数据]
+    B --> C[数据清洗和转换<br>处理缺失值、标准化字段名称]
+    C --> D[维度加载<br>先加载/更新维度表]
+    C --> E[事实表加载<br>使用维度键加载事实表]
+    D --> F[维度表<br>服务类型、日期、位置等]
+    E --> G[事实表<br>行程、支付、特定服务信息]
+    F --> H[聚合表生成<br>预计算常用指标]
+    G --> H
+    H --> I[数据集市<br>面向特定业务的数据子集]
+    F --> J[分析查询<br>支持报表和分析]
+    G --> J
+    I --> J
+    
+    %% 样式定义
+    classDef source fill:#f5f5f5,stroke:#333,stroke-width:1px
+    classDef process fill:#d5e8d4,stroke:#333,stroke-width:1px
+    classDef storage fill:#dae8fc,stroke:#333,stroke-width:1px
+    classDef output fill:#ffe6cc,stroke:#333,stroke-width:1px
+    
+    %% 应用样式
+    class A source
+    class B,C,D,E,H process
+    class F,G,I storage
+    class J output
